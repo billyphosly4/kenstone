@@ -2082,6 +2082,50 @@
   max-width: 610px;
 }
 
+.introduction-copy .founder-credentials {
+  color: #80621b;
+  font-size: 0.88rem;
+  font-weight: 750;
+  margin: -7px 0 17px;
+}
+
+.founder-credentials span {
+  color: #b89a48;
+  padding-inline: 5px;
+}
+
+.about-commitment {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgb(212 175 55 / 12%), transparent 40%),
+    #f5f6f7;
+  border-left: 4px solid #c5a059;
+  border-radius: 0 14px 14px 0;
+  margin-top: clamp(42px, 6vw, 68px);
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.about-commitment h3 {
+  color: #0a2540;
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+
+.about-commitment > p:not(.home-eyebrow) {
+  color: #596675;
+  font-size: 0.94rem;
+  line-height: 1.8;
+  margin: 0 0 12px;
+  max-width: 960px;
+}
+
+.about-commitment > p:last-child {
+  margin-bottom: 0;
+}
+
 .text-link {
   align-items: center;
   color: #785d18;

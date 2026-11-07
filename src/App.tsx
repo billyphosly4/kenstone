@@ -1636,13 +1636,42 @@ function HomePage({
         <section className="home-section introduction-section" id="about">
           <div className="home-container introduction-grid">
             <div className="introduction-copy">
-              <p className="home-eyebrow home-eyebrow-gold">A better way forward</p>
-              <h2>Dialogue can open the door to meaningful solutions.</h2>
+              <p className="home-eyebrow home-eyebrow-gold">Founder &amp; leadership</p>
+              <h2>Omukuba Livingstone Eshiwani</h2>
+              <p className="founder-credentials">
+                Certified Professional Mediator <span aria-hidden="true">·</span>{' '}
+                Lawyer <span aria-hidden="true">·</span> Founder
+              </p>
               <p>
-                At Kestone Mediation Centre &amp; Consultancy, we believe that
-                meaningful solutions begin with dialogue. We provide a
-                considered, impartial setting where parties can be heard,
-                understand the issues, and explore a constructive way forward.
+                Omukuba Livingstone Eshiwani is a Certified Professional
+                Mediator and a lawyer with four years of experience working in
+                law firms, where he has gained practical exposure to litigation,
+                commercial law and real estate practice while working alongside
+                highly experienced Advocates.
+              </p>
+              <p>
+                His professional experience has strengthened his understanding
+                of dispute management, legal processes, client representation
+                and the practical challenges associated with conventional
+                litigation. This exposure informs his appreciation of mediation
+                and other alternative dispute resolution mechanisms as
+                effective approaches to resolving disputes, reducing
+                unnecessary litigation and preserving relationships.
+              </p>
+              <p>
+                As the Founder of Kestone Mediation Centre Services, he is
+                committed to promoting accessible, impartial and professionally
+                guided mediation. Through Kestone Academy &amp; Training, he
+                also seeks to advance mediation education and equip individuals,
+                professionals and institutions with practical skills in
+                negotiation, conflict management and alternative dispute
+                resolution.
+              </p>
+              <p>
+                His work is guided by integrity, confidentiality, impartiality,
+                fairness and respect for party self-determination, with a firm
+                belief that lasting solutions are best achieved through
+                constructive dialogue and mutual understanding.
               </p>
               <a className="text-link" href="#process">
                 Discover our approach <span aria-hidden="true">&rarr;</span>
@@ -1652,24 +1681,43 @@ function HomePage({
               <article className="introduction-point">
                 <span className="point-number">01</span>
                 <div>
-                  <h3>Impartial facilitation</h3>
-                  <p>A balanced process that gives each participant a voice.</p>
+                  <h3>Integrity &amp; impartiality</h3>
+                  <p>Fair, professional facilitation that gives each party a voice.</p>
                 </div>
               </article>
               <article className="introduction-point">
                 <span className="point-number">02</span>
                 <div>
-                  <h3>Structured engagement</h3>
-                  <p>Clear stages designed to help parties work through issues.</p>
+                  <h3>Confidentiality &amp; respect</h3>
+                  <p>Careful engagement that recognizes dignity and self-determination.</p>
                 </div>
               </article>
               <article className="introduction-point">
                 <span className="point-number">03</span>
                 <div>
-                  <h3>Broad practice experience</h3>
-                  <p>Support across property, civil, commercial, and family matters.</p>
+                  <h3>Constructive dialogue</h3>
+                  <p>Promoting mutual understanding and durable ways forward.</p>
                 </div>
               </article>
+            </div>
+          </div>
+          <div className="home-container">
+            <div className="about-commitment">
+              <p className="home-eyebrow home-eyebrow-gold">Our commitment</p>
+              <h3>Connecting Parties. Creating Solutions.</h3>
+              <p>
+                At Kestone Mediation Centre Services, we believe that disputes
+                need not always end in prolonged confrontation or damaged
+                relationships. Through mediation, constructive dialogue and
+                professional capacity-building, we seek to create an environment
+                where parties are heard, differences are addressed and mutually
+                acceptable solutions can emerge.
+              </p>
+              <p>
+                Our commitment is to make dispute resolution more accessible,
+                promote a culture of peaceful engagement and contribute to the
+                advancement of alternative dispute resolution in Kenya.
+              </p>
             </div>
           </div>
         </section>
