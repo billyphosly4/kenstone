@@ -1702,6 +1702,31 @@ function HomePage({
             </div>
           </div>
           <div className="home-container">
+            <div className="about-purpose-grid">
+              <article className="about-purpose-card">
+                <p className="home-eyebrow home-eyebrow-gold">Our vision</p>
+                <p>
+                  To be a trusted centre of excellence in mediation,
+                  alternative dispute resolution and professional training,
+                  contributing to a society where disputes are resolved
+                  constructively, relationships are preserved and access to
+                  justice is strengthened.
+                </p>
+              </article>
+              <article className="about-purpose-card">
+                <p className="home-eyebrow home-eyebrow-gold">Our mission</p>
+                <p>
+                  To provide impartial, confidential, accessible and
+                  professionally guided mediation services while equipping
+                  individuals, professionals and institutions with practical
+                  skills in mediation, negotiation and conflict management.
+                  Through ethical practice, continuous learning and innovative
+                  dispute-resolution approaches, we seek to promote lasting
+                  solutions and strengthen the culture of alternative dispute
+                  resolution.
+                </p>
+              </article>
+            </div>
             <div className="about-commitment">
               <p className="home-eyebrow home-eyebrow-gold">Our commitment</p>
               <h3>Connecting Parties. Creating Solutions.</h3>
