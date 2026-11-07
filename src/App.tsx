@@ -10,7 +10,7 @@ import corporateConsultancyImage from './assets/corporate-consultancy-meeting.jp
 import courtAnnexedImage from './assets/court-annexed-mediation-workshop.jpeg'
 import facilitatedConflictImage from './assets/facilitated-conflict-discussion.jpeg'
 import familyMediationImage from './assets/family-mediation-session.jpeg'
-import kestoneLogo from './assets/kestone-logo.png'
+import kestoneBrandMark from './assets/kestone-brand-mark.png'
 import landDocumentImage from './assets/land-document-consultation.jpeg'
 import landSurveyImage from './assets/land-survey-discussion.jpeg'
 import mediationAgreementImage from './assets/mediation-agreement-meeting.jpeg'
@@ -2251,7 +2251,7 @@ function App() {
           onClick={() => navigateTo('home')}
         >
           <span className="site-brand-mark">
-            <img src={kestoneLogo} alt="" />
+            <img src={kestoneBrandMark} alt="" />
           </span>
           <span className="site-brand-name">
             <strong>Kestone</strong>
