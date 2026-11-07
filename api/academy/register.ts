@@ -4,7 +4,6 @@ import {
   logSubmissionFailure,
   validatePublicSubmission,
 } from '../../server/lib/public-submission.js'
-import { notifySubmissionInBackground } from '../../server/lib/notifications.js'
 import { SECURITY_NOTICE } from '../../server/middleware/validation.js'
 import { academyCourseRegistrationSchema } from '../../server/schemas/submissions.js'
 
@@ -46,15 +45,21 @@ export default async function academyRegistration(
       select: { id: true },
     })
 
-    notifySubmissionInBackground({
-      type: 'academy registration',
-      referenceId: registration.id,
-      clientName: data.studentName,
-      clientEmail: data.email,
-      contactEmail: data.email,
-      phone: data.phoneNumber,
-      metadata: { Course: course.title },
-    })
+    void import('../../server/lib/notifications.js')
+      .then(({ notifySubmissionInBackground }) =>
+        notifySubmissionInBackground({
+          type: 'academy registration',
+          referenceId: registration.id,
+          clientName: data.studentName,
+          clientEmail: data.email,
+          contactEmail: data.email,
+          phone: data.phoneNumber,
+          metadata: { Course: course.title },
+        }),
+      )
+      .catch((error: unknown) =>
+        logSubmissionFailure('academy_registration_notification_failed', error),
+      )
 
     res.status(201).json({
       registrationId: registration.id,

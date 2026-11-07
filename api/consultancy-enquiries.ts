@@ -4,7 +4,6 @@ import {
   logSubmissionFailure,
   validatePublicSubmission,
 } from '../server/lib/public-submission.js'
-import { notifySubmissionInBackground } from '../server/lib/notifications.js'
 import { SECURITY_NOTICE } from '../server/middleware/validation.js'
 import { consultancyEnquirySchema } from '../server/schemas/submissions.js'
 
@@ -17,18 +16,24 @@ export default async function consultancyEnquiries(
 
   try {
     const enquiry = await prisma.consultancyEnquiry.create({ data })
-    notifySubmissionInBackground({
-      type: 'consultancy enquiry',
-      referenceId: enquiry.id,
-      clientName: data.contactName,
-      clientEmail: data.email,
-      contactEmail: data.email,
-      phone: data.phone,
-      metadata: {
-        Organization: data.organizationName,
-        County: data.county || 'Not provided',
-      },
-    })
+    void import('../server/lib/notifications.js')
+      .then(({ notifySubmissionInBackground }) =>
+        notifySubmissionInBackground({
+          type: 'consultancy enquiry',
+          referenceId: enquiry.id,
+          clientName: data.contactName,
+          clientEmail: data.email,
+          contactEmail: data.email,
+          phone: data.phone,
+          metadata: {
+            Organization: data.organizationName,
+            County: data.county || 'Not provided',
+          },
+        }),
+      )
+      .catch((error: unknown) =>
+        logSubmissionFailure('consultancy_enquiry_notification_failed', error),
+      )
 
     res.status(201).json({
       id: enquiry.id,

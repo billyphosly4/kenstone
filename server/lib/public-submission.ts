@@ -1,11 +1,42 @@
 import type { Request, Response } from 'express'
 import type { ZodType } from 'zod'
-import { sanitizeValue } from '../middleware/sanitize-body.js'
 import { SECURITY_NOTICE } from '../middleware/validation.js'
 
 const requestWindowMs = 15 * 60 * 1000
 const requestLimit = 5
 const requestsByAddress = new Map<string, { count: number; resetAt: number }>()
+
+function sanitizeSubmissionValue(value: unknown): unknown {
+  if (typeof value === 'string') {
+    const withoutMarkup = value.replace(/<[^>]*>/g, '')
+    return Array.from(withoutMarkup)
+      .filter((character) => {
+        const code = character.charCodeAt(0)
+        return !(
+          code <= 0x08 ||
+          code === 0x0b ||
+          code === 0x0c ||
+          (code >= 0x0e && code <= 0x1f) ||
+          code === 0x7f
+        )
+      })
+      .join('')
+      .normalize('NFC')
+      .trim()
+  }
+
+  if (Array.isArray(value)) return value.map(sanitizeSubmissionValue)
+  if (value !== null && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        key,
+        sanitizeSubmissionValue(item),
+      ]),
+    )
+  }
+
+  return value
+}
 
 function applyPublicHeaders(req: Request, res: Response) {
   res.setHeader('Cache-Control', 'no-store')
@@ -31,7 +62,7 @@ function getClientAddress(req: Request) {
     return vercelAddress.trim()
   }
 
-  return req.socket.remoteAddress ?? 'unknown'
+  return req.socket?.remoteAddress ?? 'unknown'
 }
 
 function takeSubmissionSlot(req: Request, res: Response) {
@@ -96,7 +127,7 @@ export function validatePublicSubmission<T>(
     return undefined
   }
 
-  const sanitizedBody = sanitizeValue(req.body)
+  const sanitizedBody = sanitizeSubmissionValue(req.body)
   if (Buffer.byteLength(JSON.stringify(sanitizedBody) ?? '') > 16 * 1024) {
     res.status(413).json({
       error: 'Request body exceeds the 16 KB limit.',
