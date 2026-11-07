@@ -10,6 +10,21 @@ interface AcademyCourse {
   learningOutcomes: string[]
 }
 
+function isAcademyCourse(value: unknown): value is AcademyCourse {
+  if (typeof value !== 'object' || value === null) return false
+
+  const course = value as Record<string, unknown>
+  return (
+    typeof course.id === 'string' &&
+    typeof course.title === 'string' &&
+    typeof course.summary === 'string' &&
+    Array.isArray(course.requirements) &&
+    course.requirements.every((requirement) => typeof requirement === 'string') &&
+    Array.isArray(course.learningOutcomes) &&
+    course.learningOutcomes.every((outcome) => typeof outcome === 'string')
+  )
+}
+
 type CourseFilter = 'all' | 'mediation' | 'property' | 'business'
 
 const courseFilters: { id: CourseFilter; label: string }[] = [
@@ -78,11 +93,21 @@ export default function Academy() {
       setLoading(true)
       setLoadError('')
       try {
-        const response = await axios.get<{ courses: AcademyCourse[] }>(
+        const response = await axios.get<unknown>(
           `${academyApi}/courses`,
           { signal: controller.signal },
         )
-        setCourses(response.data.courses)
+        const data = response.data
+        if (
+          typeof data !== 'object' ||
+          data === null ||
+          !('courses' in data) ||
+          !Array.isArray(data.courses) ||
+          !data.courses.every(isAcademyCourse)
+        ) {
+          throw new Error('Invalid Academy courses response.')
+        }
+        setCourses(data.courses)
       } catch {
         if (!controller.signal.aborted) {
           setLoadError(
