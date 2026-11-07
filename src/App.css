@@ -1638,21 +1638,22 @@
   align-items: center;
   background: #f3f0e9;
   border: 1px solid #d4af37;
-  border-radius: 9px;
+  border-radius: 50%;
   box-shadow: 0 2px 8px rgb(7 26 46 / 10%);
   display: flex;
-  flex: 0 0 106px;
-  height: 62px;
+  flex: 0 0 64px;
+  height: 64px;
   justify-content: center;
   overflow: hidden;
-  padding: 2px;
-  width: 106px;
+  padding: 3px;
+  width: 64px;
 }
 
 .site-brand-mark img {
   display: block;
+  border-radius: 50%;
   height: 100%;
-  max-width: none;
+  max-width: 100%;
   object-fit: contain;
   image-rendering: auto;
   width: 100%;
@@ -3348,10 +3349,10 @@
   }
 
   .site-brand-mark {
-    flex-basis: 92px;
-    height: 56px;
-    padding: 2px;
-    width: 92px;
+    flex-basis: 58px;
+    height: 58px;
+    padding: 3px;
+    width: 58px;
   }
 
   .site-brand-name strong {
@@ -3457,9 +3458,9 @@
   }
 
   .site-brand-mark {
-    flex-basis: 78px;
-    height: 50px;
-    width: 78px;
+    flex-basis: 52px;
+    height: 52px;
+    width: 52px;
   }
 
   .site-brand-name strong {
