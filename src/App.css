@@ -1975,6 +1975,100 @@
   background: #f3f5f7;
 }
 
+.court-annexed-section {
+  background:
+    radial-gradient(ellipse at 92% 8%, rgb(212 175 55 / 9%), transparent 34%),
+    #fff;
+}
+
+.court-annexed-layout {
+  align-items: start;
+  display: grid;
+  gap: clamp(32px, 6vw, 76px);
+  grid-template-columns: minmax(0, 1.4fr) minmax(270px, 0.8fr);
+}
+
+.court-annexed-copy h2 {
+  color: #0a2540;
+  font-family: var(--font-family-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.16;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+
+.court-annexed-copy > p:not(.home-eyebrow) {
+  color: #596675;
+  font-size: 0.94rem;
+  line-height: 1.8;
+  margin: 0 0 16px;
+}
+
+.court-annexed-cta {
+  margin-top: 8px;
+}
+
+.court-annexed-safeguards {
+  background: #0a2540;
+  border: 1px solid rgb(212 175 55 / 28%);
+  border-radius: 16px;
+  box-shadow: 0 18px 42px rgb(7 26 46 / 12%);
+  color: #fff;
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.court-annexed-card-kicker {
+  color: #e4ca70;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.court-annexed-safeguards h3 {
+  color: #fff;
+  font-family: var(--font-family-heading);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 20px;
+}
+
+.court-annexed-safeguards ul {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.court-annexed-safeguards li {
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  color: rgb(255 255 255 / 82%);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  padding-top: 13px;
+}
+
+.court-annexed-safeguards li::before {
+  color: #e4ca70;
+  content: '✓';
+  font-weight: 800;
+  margin-right: 10px;
+}
+
+.court-annexed-note {
+  border-left: 3px solid #d4af37;
+  color: rgb(255 255 255 / 72%);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  margin: 22px 0 0;
+  padding-left: 14px;
+}
+
 .section-heading {
   margin: 0 auto 38px;
   max-width: 760px;
@@ -3637,6 +3731,10 @@
 }
 
 @media (max-width: 1020px) {
+  .court-annexed-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .academy-course-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

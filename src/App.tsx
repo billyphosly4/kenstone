@@ -1684,6 +1684,74 @@ function HomePage({
           </div>
         </section>
 
+        <section
+          className="home-section court-annexed-section"
+          id="court-annexed-mediation"
+          aria-labelledby="court-annexed-title"
+        >
+          <div className="home-container court-annexed-layout">
+            <FadeIn className="court-annexed-copy">
+              <p className="home-eyebrow home-eyebrow-gold">
+                Supporting access to justice
+              </p>
+              <h2 id="court-annexed-title">Court-Annexed Mediation</h2>
+              <p>
+                Court-annexed mediation is an important part of Kenya’s justice
+                system and offers an alternative to resolving suitable disputes
+                solely through the conventional adversarial court process. In
+                appropriate court-referred matters, mediation provides a
+                structured, impartial and confidential setting for parties to
+                explore common ground, address differences and work towards
+                mutually acceptable settlements.
+              </p>
+              <p>
+                The framework is grounded in Article 159(2)(c) of the
+                Constitution of Kenya, 2010, which recognises reconciliation,
+                mediation, arbitration and other forms of alternative dispute
+                resolution. Sections 59A–59D of the Civil Procedure Act, Cap.
+                21, provide a statutory framework for mediation, including the
+                Mediation Accreditation Committee.
+              </p>
+              <p>
+                Court referral may give parties an opportunity to participate
+                actively in resolving their dispute, promote access to justice,
+                reduce avoidable litigation delays and preserve relationships
+                where possible. Referral and suitability remain subject to the
+                court’s directions and applicable requirements.
+              </p>
+              <a
+                className="home-button home-button-gold court-annexed-cta"
+                href="#contact"
+                onClick={(event) => {
+                  event.preventDefault()
+                  onNavigate('enquiries')
+                }}
+              >
+                Request a Consultation <span aria-hidden="true">&rarr;</span>
+              </a>
+            </FadeIn>
+            <FadeIn className="court-annexed-safeguards" delay={0.12}>
+              <p className="court-annexed-card-kicker">Our commitments</p>
+              <h3>A fair, party-led process.</h3>
+              <ul>
+                <li>Impartiality and procedural fairness</li>
+                <li>Party self-determination and good faith</li>
+                <li>Confidentiality, subject to applicable law</li>
+                <li>
+                  Where court-annexed matters are undertaken, mediators will be
+                  duly accredited and appointed in accordance with applicable
+                  legal and Judiciary requirements.
+                </li>
+              </ul>
+              <p className="court-annexed-note">
+                Our objective is to complement the administration of justice
+                through consensual, efficient and sustainable dispute
+                resolution.
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
         <section className="home-section why-section" id="why-kestone">
           <div className="home-container">
             <div className="section-heading section-heading-light">
