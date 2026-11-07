@@ -5,8 +5,17 @@ import { useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import Academy from './Academy'
 import FadeIn from './components/animations/FadeIn'
+import commercialMediationImage from './assets/commercial-mediation-meeting.jpeg'
+import corporateConsultancyImage from './assets/corporate-consultancy-meeting.jpeg'
+import courtAnnexedImage from './assets/court-annexed-mediation-workshop.jpeg'
+import facilitatedConflictImage from './assets/facilitated-conflict-discussion.jpeg'
+import familyMediationImage from './assets/family-mediation-session.jpeg'
 import kestoneLogo from './assets/kestone-logo.png'
+import landDocumentImage from './assets/land-document-consultation.jpeg'
+import landSurveyImage from './assets/land-survey-discussion.jpeg'
+import mediationAgreementImage from './assets/mediation-agreement-meeting.jpeg'
 import mediationHero from './assets/mediation-hero.png'
+import virtualMediationImage from './assets/virtual-mediation-consultation.jpeg'
 import './App.css'
 
 const currentYear = new Date().getFullYear()
@@ -759,13 +768,19 @@ function ConsultancyEnquiries() {
 
   return (
     <main className="page-shell">
-      <header className="page-heading">
-        <p className="eyebrow">Kestone Consultancy</p>
-        <h1>Institutional &amp; Corporate Enquiry</h1>
-        <p>
-          Tell us how your organization would like to explore mediation,
-          facilitation, or conflict-management support.
-        </p>
+      <header className="page-heading consultancy-page-heading">
+        <div>
+          <p className="eyebrow">Kestone Consultancy</p>
+          <h1>Institutional &amp; Corporate Enquiry</h1>
+          <p>
+            Tell us how your organization would like to explore mediation,
+            facilitation, or conflict-management support.
+          </p>
+        </div>
+        <img
+          src={corporateConsultancyImage}
+          alt="Colleagues discussing an organizational matter around a conference table"
+        />
       </header>
 
       {referenceId ? (
@@ -983,6 +998,8 @@ function FieldError({
 const practiceAreas = [
   {
     icon: 'property',
+    image: landSurveyImage,
+    imageAlt: 'A family and surveyor reviewing a land plot boundary',
     title: 'Land & Property Mediation',
     label: 'Flagship practice',
     description:
@@ -991,6 +1008,8 @@ const practiceAreas = [
   },
   {
     icon: 'civil',
+    image: facilitatedConflictImage,
+    imageAlt: 'Two people discussing a disagreement in a facilitated meeting',
     title: 'Civil & Contractual Disputes',
     description:
       'Facilitated conversations for civil matters, service disagreements, and contractual concerns.',
@@ -998,6 +1017,8 @@ const practiceAreas = [
   },
   {
     icon: 'business',
+    image: commercialMediationImage,
+    imageAlt: 'Business representatives meeting to discuss a commercial agreement',
     title: 'Commercial & Business Disputes',
     description:
       'Practical dispute resolution that supports business relationships and forward-looking outcomes.',
@@ -1005,6 +1026,8 @@ const practiceAreas = [
   },
   {
     icon: 'family',
+    image: familyMediationImage,
+    imageAlt: 'A mediator listening as family members discuss an issue',
     title: 'Family, Matrimonial & Succession',
     description:
       'Respectful dialogue for family matters, with care for relationships and individual perspectives.',
@@ -1124,6 +1147,8 @@ const resourceArticles: {
   excerpt: string
   body: string
   icon: string
+  image: string
+  imageAlt: string
 }[] = [
   {
     title: 'Why mediation can be effective in resolving land disputes in Kenya',
@@ -1135,6 +1160,8 @@ const resourceArticles: {
     body:
       'A facilitated discussion can give parties space to identify the practical issues beneath a land disagreement, such as access, boundaries, use, or a continuing relationship. Each participant can consider possible options without being required to accept an outcome. Suitability varies; complex rights, urgent deadlines, or safety concerns call for independent professional guidance.',
     icon: 'property',
+    image: landSurveyImage,
+    imageAlt: 'A family and surveyor reviewing a land plot',
   },
   {
     title: 'Mediation and litigation: understanding the difference',
@@ -1146,6 +1173,8 @@ const resourceArticles: {
     body:
       'In mediation, an impartial mediator supports discussion while the parties retain control over whether to reach an agreement. In litigation, a court determines the issues presented under the applicable law and procedure. The processes are not interchangeable in every circumstance. Parties should seek independent legal advice about their rights, deadlines, and available options.',
     icon: 'balance',
+    image: virtualMediationImage,
+    imageAlt: 'A lawyer joining a virtual consultation from an office',
   },
   {
     title: 'Constructive conversations in commercial disagreements',
@@ -1157,6 +1186,8 @@ const resourceArticles: {
     body:
       'Commercial discussions may involve payment, delivery, performance, or expectations about future work. A structured process can help participants separate the issues, clarify what information they need, and explore workable next steps. Any resolution remains voluntary and should be reviewed with appropriate professional advisers.',
     icon: 'business',
+    image: commercialMediationImage,
+    imageAlt: 'Business representatives discussing a commercial agreement',
   },
   {
     title: 'Preparing for a first mediation conversation',
@@ -1168,6 +1199,8 @@ const resourceArticles: {
     body:
       'A first conversation can focus on the broad nature of the disagreement, who is involved, and what each person hopes to resolve. Share only preliminary, non-confidential information. Do not send evidence, title deeds, legal documents, or sensitive case histories through an open enquiry form. An initial discussion does not guarantee that mediation is suitable or that parties will reach agreement.',
     icon: 'civil',
+    image: mediationAgreementImage,
+    imageAlt: 'Participants concluding a facilitated meeting with an agreement',
   },
 ]
 
@@ -1331,6 +1364,12 @@ function PropertyPracticeArea({
     <main className="property-page">
       <header className="property-hero">
         <div className="hero-pattern" aria-hidden="true" />
+        <img
+          className="property-hero-image"
+          src={landDocumentImage}
+          alt=""
+          aria-hidden="true"
+        />
         <div className="home-container property-hero-content">
           <nav className="breadcrumbs" aria-label="Breadcrumb">
             <a href="#home" onClick={() => onNavigate('home')}>
@@ -1658,6 +1697,12 @@ function HomePage({
                   key={area.title}
                   trigger="parent"
                 >
+                  <img
+                    className="practice-card-image"
+                    src={area.image}
+                    alt={area.imageAlt}
+                    loading="lazy"
+                  />
                   <div className="practice-icon">
                     <LineIcon name={area.icon} />
                   </div>
@@ -1731,6 +1776,12 @@ function HomePage({
               </a>
             </FadeIn>
             <FadeIn className="court-annexed-safeguards" delay={0.12}>
+              <img
+                className="court-annexed-image"
+                src={courtAnnexedImage}
+                alt="Participants in a Kenyan dispute-resolution workshop"
+                loading="lazy"
+              />
               <p className="court-annexed-card-kicker">Our commitments</p>
               <h3>A fair, party-led process.</h3>
               <ul>
@@ -1922,10 +1973,10 @@ function HomePage({
                 <div className="article-grid" aria-live="polite">
                   {filteredArticles.map((article) => (
                     <article className="article-card" key={article.title}>
-                      <div className={`article-art article-art-${article.icon}`} aria-hidden="true">
-                        <img src={mediationHero} alt="" />
-                        <span><LineIcon name={article.icon} /></span>
-                        <small>Kestone Insights</small>
+                      <div className={`article-art article-art-${article.icon}`}>
+                        <img src={article.image} alt={article.imageAlt} loading="lazy" />
+                        <span aria-hidden="true"><LineIcon name={article.icon} /></span>
+                        <small aria-hidden="true">Kestone Insights</small>
                       </div>
                       <div className="article-card-body">
                         <span className="article-badge">{article.category}</span>

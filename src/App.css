@@ -9,6 +9,21 @@
   margin: 0 0 26px;
 }
 
+.consultancy-page-heading {
+  align-items: center;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.8fr);
+}
+
+.consultancy-page-heading img {
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgb(7 26 46 / 12%);
+  object-fit: cover;
+  width: 100%;
+}
+
 .eyebrow,
 .step-kicker {
   color: #80621b;
@@ -2019,6 +2034,16 @@
   padding: clamp(24px, 3vw, 34px);
 }
 
+.court-annexed-image {
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 24px;
+  object-fit: cover;
+  object-position: center 40%;
+  width: 100%;
+}
+
 .court-annexed-card-kicker {
   color: #e4ca70;
   font-size: 0.72rem;
@@ -2097,6 +2122,15 @@
   transition:
     box-shadow 180ms ease,
     transform 180ms ease;
+}
+
+.practice-card-image {
+  border-radius: 8px;
+  height: 126px;
+  margin-bottom: 18px;
+  object-fit: cover;
+  object-position: center 42%;
+  width: 100%;
 }
 
 .practice-card:hover {
@@ -3282,6 +3316,19 @@
   position: relative;
 }
 
+.property-hero-image {
+  height: 100%;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 65%);
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.32;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: min(52%, 720px);
+  z-index: 0;
+}
+
 .property-hero-content {
   padding-bottom: 65px;
   padding-top: 37px;
@@ -3741,6 +3788,15 @@
 }
 
 @media (max-width: 720px) {
+  .consultancy-page-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .consultancy-page-heading img {
+    aspect-ratio: 16 / 9;
+    max-height: 240px;
+  }
+
   .academy-hero {
     min-height: 0;
   }

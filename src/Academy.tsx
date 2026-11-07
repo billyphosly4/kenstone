@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState, type FormEvent } from 'react'
-import mediationHero from './assets/mediation-hero.png'
+import mediationTrainingImage from './assets/mediation-training-workshop.jpeg'
 
 interface AcademyCourse {
   id: string
@@ -175,7 +175,7 @@ export default function Academy() {
       <header
         className="academy-hero"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgb(7 26 46 / 94%) 0%, rgb(10 37 64 / 80%) 58%, rgb(10 37 64 / 48%) 100%), url("${mediationHero}")`,
+          backgroundImage: `linear-gradient(90deg, rgb(7 26 46 / 94%) 0%, rgb(10 37 64 / 80%) 58%, rgb(10 37 64 / 48%) 100%), url("${mediationTrainingImage}")`,
         }}
       >
         <div className="home-container academy-hero-inner">
