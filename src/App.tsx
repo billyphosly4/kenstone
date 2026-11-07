@@ -8,7 +8,7 @@ import mediationHero from './assets/mediation-hero.png'
 import './App.css'
 
 const currentYear = new Date().getFullYear()
-type AppPage = 'home' | 'academy' | 'enquiries' | 'property'
+type AppPage = 'home' | 'academy' | 'enquiries' | 'consultancy' | 'property'
 
 type DisputeCategoryChoice =
   | 'LAND_PROPERTY'
@@ -684,6 +684,233 @@ function Enquiries() {
         This form is for preliminary triage only and does not create a
         mediator-client relationship.
       </p>
+    </main>
+  )
+}
+
+interface ConsultancyEnquiryValues {
+  organizationName: string
+  contactName: string
+  contactRole: string
+  email: string
+  phone: string
+  county: string
+  requestDetails: string
+}
+
+const initialConsultancyValues: ConsultancyEnquiryValues = {
+  organizationName: '',
+  contactName: '',
+  contactRole: '',
+  email: '',
+  phone: '',
+  county: '',
+  requestDetails: '',
+}
+
+function ConsultancyEnquiries() {
+  const [values, setValues] = useState(initialConsultancyValues)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [referenceId, setReferenceId] = useState('')
+
+  function updateField(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    const { name, value } = event.currentTarget
+    setValues((current) => ({ ...current, [name]: value }))
+  }
+
+  async function submitEnquiry(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setSubmitting(true)
+    setSubmitError('')
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL ?? ''}/api/consultancy-enquiries`,
+        {
+          organizationName: values.organizationName.trim(),
+          contactName: values.contactName.trim(),
+          contactRole: values.contactRole.trim() || undefined,
+          email: values.email.trim() || undefined,
+          phone: values.phone.trim() || undefined,
+          county: values.county.trim() || undefined,
+          requestDetails: values.requestDetails.trim(),
+        },
+      )
+
+      if (typeof response.data.id !== 'string' || !response.data.id) {
+        throw new Error('The server did not return a reference ID.')
+      }
+
+      setReferenceId(response.data.id)
+      setValues(initialConsultancyValues)
+    } catch {
+      setSubmitError(
+        'We could not submit your consultancy enquiry. Please try again later or contact our offices directly.',
+      )
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  return (
+    <main className="page-shell">
+      <header className="page-heading">
+        <p className="eyebrow">Kestone Consultancy</p>
+        <h1>Institutional &amp; Corporate Enquiry</h1>
+        <p>
+          Tell us how your organization would like to explore mediation,
+          facilitation, or conflict-management support.
+        </p>
+      </header>
+
+      {referenceId ? (
+        <section className="success-card" role="status">
+          <h1>Enquiry received</h1>
+          <p>
+            Thank you. Your preliminary consultancy enquiry has been recorded.
+            Reference: <strong>{referenceId}</strong>
+          </p>
+          <p>Our team will follow up using the contact details you provided.</p>
+        </section>
+      ) : (
+        <section className="wizard-card">
+          <form className="wizard-form form-step" onSubmit={submitEnquiry}>
+            <h2>Organization details</h2>
+            <p className="step-description">
+              Provide preliminary, non-confidential information. Fields marked
+              with * are required.
+            </p>
+            <div className="form-grid">
+              <div>
+                <label className="field-label" htmlFor="organizationName">
+                  Organization name <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="organizationName"
+                  name="organizationName"
+                  value={values.organizationName}
+                  onChange={updateField}
+                  autoComplete="organization"
+                  minLength={2}
+                  maxLength={200}
+                  required
+                />
+              </div>
+              <div>
+                <label className="field-label" htmlFor="contactName">
+                  Contact person <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="contactName"
+                  name="contactName"
+                  value={values.contactName}
+                  onChange={updateField}
+                  autoComplete="name"
+                  minLength={2}
+                  maxLength={150}
+                  required
+                />
+              </div>
+              <div>
+                <label className="field-label" htmlFor="contactRole">
+                  Role or title
+                </label>
+                <input
+                  id="contactRole"
+                  name="contactRole"
+                  value={values.contactRole}
+                  onChange={updateField}
+                  maxLength={120}
+                />
+              </div>
+              <div>
+                <label className="field-label" htmlFor="consultancyEmail">
+                  Email
+                </label>
+                <input
+                  id="consultancyEmail"
+                  name="email"
+                  type="email"
+                  value={values.email}
+                  onChange={updateField}
+                  autoComplete="email"
+                  maxLength={254}
+                  required={!values.phone}
+                />
+              </div>
+              <div>
+                <label className="field-label" htmlFor="consultancyPhone">
+                  Phone
+                </label>
+                <input
+                  id="consultancyPhone"
+                  name="phone"
+                  type="tel"
+                  value={values.phone}
+                  onChange={updateField}
+                  autoComplete="tel"
+                  minLength={7}
+                  maxLength={40}
+                  required={!values.email}
+                />
+              </div>
+              <div>
+                <label className="field-label" htmlFor="consultancyCounty">
+                  County or location
+                </label>
+                <input
+                  id="consultancyCounty"
+                  name="county"
+                  value={values.county}
+                  onChange={updateField}
+                  maxLength={100}
+                />
+              </div>
+            </div>
+            <label className="field-label" htmlFor="requestDetails">
+              How can we support your organization?{' '}
+              <span aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="requestDetails"
+              name="requestDetails"
+              rows={5}
+              minLength={2}
+              maxLength={2000}
+              value={values.requestDetails}
+              onChange={updateField}
+              required
+            />
+            <div className="confidentiality-warning" role="note">
+              <strong>PRELIMINARY INFORMATION ONLY</strong>
+              <p>
+                Never submit or upload sensitive, confidential evidence, legal
+                documents, or private case details through this form.
+              </p>
+            </div>
+            {submitError && (
+              <div className="submit-error" role="alert">
+                {submitError}
+              </div>
+            )}
+            <div className="wizard-actions">
+              <button
+                type="submit"
+                className="button button-primary"
+                disabled={submitting}
+                aria-busy={submitting}
+              >
+                {submitting
+                  ? 'Submitting enquiry...'
+                  : 'Submit Consultancy Enquiry'}
+              </button>
+            </div>
+          </form>
+        </section>
+      )}
     </main>
   )
 }
@@ -1704,7 +1931,9 @@ function HomePage({
               <h2>Quick links</h2>
               <a href="#about">About Kestone</a>
               <a href="#services">Mediation Services</a>
-              <a href="#consultancy">Consultancy</a>
+              <button type="button" onClick={() => onNavigate('consultancy')}>
+                Consultancy enquiry
+              </button>
               <button type="button" onClick={() => onNavigate('academy')}>
                 Kestone Academy
               </button>
@@ -1714,6 +1943,12 @@ function HomePage({
             <div id="consultancy">
               <h2>Contact</h2>
               <p>Kenya · In-person and virtual options</p>
+              <p>
+                Corporate or institutional request:{' '}
+                <button type="button" onClick={() => onNavigate('consultancy')}>
+                  Send a consultancy enquiry
+                </button>
+              </p>
               <p>
                 Phone &amp; WhatsApp:{' '}
                 <button type="button" onClick={() => onNavigate('enquiries')}>
@@ -1825,7 +2060,14 @@ function App() {
           >
             Practice Areas
           </button>
-          <a href="#consultancy" onClick={() => navigateTo('home')}>Consultancy</a>
+          <button
+            type="button"
+            className={activePage === 'consultancy' ? 'is-active' : ''}
+            aria-current={activePage === 'consultancy' ? 'page' : undefined}
+            onClick={() => navigateTo('consultancy')}
+          >
+            Consultancy
+          </button>
           <button
             type="button"
             className={activePage === 'academy' ? 'is-active' : ''}
@@ -1856,6 +2098,7 @@ function App() {
       {activePage === 'home' && <HomePage onNavigate={setActivePage} />}
       {activePage === 'academy' && <Academy />}
       {activePage === 'enquiries' && <Enquiries />}
+      {activePage === 'consultancy' && <ConsultancyEnquiries />}
       {activePage === 'property' && (
         <PropertyPracticeArea onNavigate={setActivePage} />
       )}
