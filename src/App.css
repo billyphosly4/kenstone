@@ -1654,7 +1654,7 @@
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 20% center;
   image-rendering: auto;
   width: 100%;
 }
