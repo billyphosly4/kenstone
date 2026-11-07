@@ -1,0 +1,111 @@
+:root {
+  color-scheme: light;
+
+  /* Brand */
+  --color-navy-950: #071a2e;
+  --color-navy-900: #0a2540;
+  --color-navy-800: #002d62;
+  --color-navy-700: #174875;
+  --color-navy-100: #e8eef5;
+  --color-gold-700: #9c7620;
+  --color-gold-600: #c5a059;
+  --color-gold-500: #d4af37;
+  --color-gold-100: #fbf5e5;
+  --color-warm-white: #f8f9fa;
+  --color-white: #fff;
+  --color-grey-100: #f1f3f5;
+  --color-grey-200: #e9ecef;
+  --color-grey-300: #d7dce1;
+  --color-grey-500: #77818c;
+  --color-grey-700: #49535e;
+  --color-grey-900: #202a33;
+
+  /* Feedback */
+  --color-success: #247044;
+  --color-success-soft: #e9f4ed;
+  --color-warning: #855b0a;
+  --color-warning-soft: #fff6dc;
+  --color-danger: #a32119;
+  --color-danger-soft: #fff0ee;
+  --color-info: #245b8f;
+  --color-info-soft: #edf5fc;
+
+  /* Semantic colors */
+  --color-brand: var(--color-navy-800);
+  --color-brand-strong: var(--color-navy-900);
+  --color-accent: var(--color-gold-500);
+  --color-background: var(--color-warm-white);
+  --color-surface: var(--color-white);
+  --color-text: var(--color-grey-900);
+  --color-text-muted: var(--color-grey-700);
+  --color-border: var(--color-grey-200);
+  --color-focus: var(--color-navy-700);
+
+  /* Typography */
+  --font-family-body:
+    Inter, Montserrat, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-family-heading:
+    "Playfair Display", Merriweather, Georgia, "Times New Roman", serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: clamp(2.125rem, 5vw, 3rem);
+  --font-size-5xl: clamp(2.5rem, 6vw, 3.75rem);
+
+  --line-height-tight: 1.2;
+  --line-height-heading: 1.3;
+  --line-height-body: 1.6;
+  --line-height-relaxed: 1.75;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Layout */
+  --container-sm: 40rem;
+  --container-md: 48rem;
+  --container-lg: 64rem;
+  --container-xl: 75rem;
+  --container-gutter: clamp(1rem, 4vw, 2rem);
+  --section-space: clamp(3rem, 7vw, 6rem);
+
+  /* Shape, borders, and elevation */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-pill: 999px;
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --shadow-sm: 0 1px 3px rgb(7 26 46 / 8%);
+  --shadow-md: 0 8px 24px rgb(7 26 46 / 10%);
+  --shadow-lg: 0 18px 48px rgb(7 26 46 / 14%);
+  --shadow-focus: 0 0 0 3px rgb(23 72 117 / 24%);
+
+  /* Motion */
+  --duration-fast: 140ms;
+  --duration-normal: 220ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}

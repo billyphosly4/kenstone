@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum DisputeCategory {
+  LAND_PROPERTY
+  REAL_ESTATE
+  CIVIL
+  COMMERCIAL
+  FAMILY
+  FAMILY_SUCCESSION
+  EMPLOYMENT
+  CONSTRUCTION
+  OTHER
+}
+
+enum ContactMethod {
+  EMAIL
+  PHONE
+  WHATSAPP
+}
+
+enum OtherPartyStatus {
+  AWARE
+  AGREED
+  UNAWARE
+}
+
+enum ConsultationPreference {
+  PHYSICAL
+  VIRTUAL
+}
+
+model Enquiry {
+  id                     String          @id @default(cuid())
+  fullName               String          @db.VarChar(150)
+  email                  String?         @db.VarChar(254)
+  phone                  String?         @db.VarChar(40)
+  preferredContactMethod ContactMethod?
+  preferredContactTime   String?         @db.VarChar(120)
+  disputeCategory        DisputeCategory
+  otherPartyStatus       OtherPartyStatus?
+  consultationPreference ConsultationPreference?
+  county                 String          @db.VarChar(100)
+  opponentAware          Boolean
+  description            String          @db.VarChar(2000)
+  createdAt              DateTime        @default(now()) @db.Timestamptz(6)
+
+  @@index([createdAt])
+  @@index([disputeCategory, county])
+}
+
+model AcademyRegistration {
+  id          String         @id @default(cuid())
+  fullName    String         @db.VarChar(150)
+  email       String?        @db.VarChar(254)
+  phone       String?        @db.VarChar(40)
+  course      String         @db.VarChar(150)
+  courseId    String?
+  phoneNumber String?        @db.VarChar(40)
+  notes       String?        @db.VarChar(1000)
+  courseInfo  AcademyCourse? @relation(fields: [courseId], references: [id], onDelete: Restrict)
+  createdAt   DateTime       @default(now()) @db.Timestamptz(6)
+
+  @@index([createdAt])
+  @@index([course])
+  @@index([courseId])
+}
+
+model AcademyCourse {
+  id               String               @id @default(cuid())
+  title            String               @unique @db.VarChar(180)
+  summary          String               @db.VarChar(2000)
+  requirements     String[]             @default([])
+  learningOutcomes String[]             @default([])
+  isPublished      Boolean              @default(true)
+  createdAt        DateTime             @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime             @default(now()) @updatedAt @db.Timestamptz(6)
+  registrations    AcademyRegistration[]
+
+  @@index([isPublished, title])
+}
+
+model ConsultancyEnquiry {
+  id                String   @id @default(cuid())
+  organizationName String   @db.VarChar(200)
+  contactName      String   @db.VarChar(150)
+  contactRole      String?  @db.VarChar(120)
+  email            String?  @db.VarChar(254)
+  phone            String?  @db.VarChar(40)
+  county           String?  @db.VarChar(100)
+  requestDetails   String   @db.VarChar(2000)
+  createdAt        DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([createdAt])
+  @@index([organizationName])
+}

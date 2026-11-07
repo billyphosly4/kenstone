@@ -1,0 +1,14 @@
+ALTER TYPE "DisputeCategory" ADD VALUE IF NOT EXISTS 'REAL_ESTATE';
+ALTER TYPE "DisputeCategory" ADD VALUE IF NOT EXISTS 'FAMILY_SUCCESSION';
+ALTER TYPE "DisputeCategory" ADD VALUE IF NOT EXISTS 'EMPLOYMENT';
+ALTER TYPE "DisputeCategory" ADD VALUE IF NOT EXISTS 'CONSTRUCTION';
+ALTER TYPE "DisputeCategory" ADD VALUE IF NOT EXISTS 'OTHER';
+
+ALTER TYPE "ContactMethod" ADD VALUE IF NOT EXISTS 'WHATSAPP';
+
+CREATE TYPE "OtherPartyStatus" AS ENUM ('AWARE', 'AGREED', 'UNAWARE');
+CREATE TYPE "ConsultationPreference" AS ENUM ('PHYSICAL', 'VIRTUAL');
+
+ALTER TABLE "Enquiry"
+    ADD COLUMN "otherPartyStatus" "OtherPartyStatus",
+    ADD COLUMN "consultationPreference" "ConsultationPreference";
