@@ -1,8 +1,10 @@
 import axios from 'axios'
+import { domAnimation, LazyMotion } from 'framer-motion'
 import { FormikProvider, useFormik } from 'formik'
 import { useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import Academy from './Academy'
+import FadeIn from './components/animations/FadeIn'
 import kestoneLogo from './assets/kestone-logo.png'
 import mediationHero from './assets/mediation-hero.png'
 import './App.css'
@@ -1524,14 +1526,23 @@ function HomePage({
       >
         <div className="hero-pattern" aria-hidden="true" />
         <div className="home-container hero-layout">
-          <div className="hero-content">
-            <p className="home-eyebrow">Kestone Mediation Centre &amp; Consultancy</p>
-            <h1>Disputes Deserve Solutions, Not Endless Conflict.</h1>
-            <p className="hero-subtitle">
+          <FadeIn
+            as="div"
+            className="hero-content"
+            trigger="mount"
+            staggerChildren={0.1}
+          >
+            <FadeIn as="p" className="home-eyebrow" trigger="parent">
+              Kestone Mediation Centre &amp; Consultancy
+            </FadeIn>
+            <FadeIn as="div" trigger="parent">
+              <h1>Disputes Deserve Solutions, Not Endless Conflict.</h1>
+            </FadeIn>
+            <FadeIn as="p" className="hero-subtitle" trigger="parent">
               Professional mediation and consultancy services in property,
               real estate, civil, commercial, family and institutional disputes.
-            </p>
-            <div className="hero-actions">
+            </FadeIn>
+            <FadeIn as="div" className="hero-actions" trigger="parent">
               <button
                 className="home-button home-button-gold"
                 type="button"
@@ -1543,15 +1554,15 @@ function HomePage({
               <a className="home-button home-button-outline" href="#services">
                 Explore Our Services
               </a>
-            </div>
-            <div className="hero-assurance">
+            </FadeIn>
+            <FadeIn as="div" className="hero-assurance" trigger="parent">
               <span className="assurance-mark" aria-hidden="true">
                 &#10003;
               </span>
               Impartial facilitation <span aria-hidden="true">&middot;</span>{' '}
               Practical pathways forward
-            </div>
-          </div>
+            </FadeIn>
+          </FadeIn>
         </div>
         <div className="hero-marquee" aria-label="Mediation, consultancy, training">
           <div className="hero-marquee-track">
@@ -1634,9 +1645,19 @@ function HomePage({
                 issues involved.
               </p>
             </div>
-            <div className="practice-grid" id="practice-areas">
+            <FadeIn
+              as="div"
+              className="practice-grid"
+              id="practice-areas"
+              staggerChildren={0.12}
+            >
               {practiceAreas.map((area) => (
-                <article className="practice-card" key={area.title}>
+                <FadeIn
+                  as="article"
+                  className="practice-card"
+                  key={area.title}
+                  trigger="parent"
+                >
                   <div className="practice-icon">
                     <LineIcon name={area.icon} />
                   </div>
@@ -1657,9 +1678,9 @@ function HomePage({
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </a>
-                </article>
+                </FadeIn>
               ))}
-            </div>
+            </FadeIn>
           </div>
         </section>
 
@@ -1669,17 +1690,26 @@ function HomePage({
               <p className="home-eyebrow">The Kestone difference</p>
               <h2>A process built around people and progress.</h2>
             </div>
-            <div className="principle-grid">
+            <FadeIn
+              as="div"
+              className="principle-grid"
+              staggerChildren={0.1}
+            >
               {principles.map((principle) => (
-                <article className="principle-card" key={principle.title}>
+                <FadeIn
+                  as="article"
+                  className="principle-card"
+                  key={principle.title}
+                  trigger="parent"
+                >
                   <div className="principle-icon">
                     <LineIcon name={principle.icon} />
                   </div>
                   <h3>{principle.title}</h3>
                   <p>{principle.description}</p>
-                </article>
+                </FadeIn>
               ))}
-            </div>
+            </FadeIn>
           </div>
         </section>
 
@@ -1693,15 +1723,24 @@ function HomePage({
                 participation informed and voluntary.
               </p>
             </div>
-            <ol className="process-timeline">
+            <FadeIn
+              as="ol"
+              className="process-timeline"
+              staggerChildren={0.14}
+            >
               {mediationSteps.map((step) => (
-                <li className="process-step" key={step.number}>
+                <FadeIn
+                  as="li"
+                  className="process-step"
+                  key={step.number}
+                  trigger="parent"
+                >
                   <span className="process-number">{step.number}</span>
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
-                </li>
+                </FadeIn>
               ))}
-            </ol>
+            </FadeIn>
           </div>
         </section>
 
@@ -2010,8 +2049,9 @@ function App() {
   }, [menuOpen])
 
   return (
-    <div className="app-shell">
-      <nav className="site-navigation home-navigation" aria-label="Main navigation">
+    <LazyMotion features={domAnimation}>
+      <div className="app-shell">
+        <nav className="site-navigation home-navigation" aria-label="Main navigation">
         <a
           className="site-brand"
           href="#home"
@@ -2094,15 +2134,16 @@ function App() {
         >
           Request Consultation
         </button>
-      </nav>
-      {activePage === 'home' && <HomePage onNavigate={setActivePage} />}
-      {activePage === 'academy' && <Academy />}
-      {activePage === 'enquiries' && <Enquiries />}
-      {activePage === 'consultancy' && <ConsultancyEnquiries />}
-      {activePage === 'property' && (
-        <PropertyPracticeArea onNavigate={setActivePage} />
-      )}
-    </div>
+        </nav>
+        {activePage === 'home' && <HomePage onNavigate={setActivePage} />}
+        {activePage === 'academy' && <Academy />}
+        {activePage === 'enquiries' && <Enquiries />}
+        {activePage === 'consultancy' && <ConsultancyEnquiries />}
+        {activePage === 'property' && (
+          <PropertyPracticeArea onNavigate={setActivePage} />
+        )}
+      </div>
+    </LazyMotion>
   )
 }
 

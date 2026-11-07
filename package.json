@@ -24,6 +24,7 @@
     "express": "^5.1.0",
     "express-rate-limit": "^8.1.0",
     "formik": "^2.4.9",
+    "framer-motion": "^14.10.1",
     "helmet": "^8.1.0",
     "nodemailer": "^10.3.1",
     "react": "^19.3.1",
