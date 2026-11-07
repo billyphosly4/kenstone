@@ -16,7 +16,7 @@ function stripControlCharacters(value: string) {
     .join('')
 }
 
-function sanitizeValue(value: unknown): unknown {
+export function sanitizeValue(value: unknown): unknown {
   if (typeof value === 'string') {
     const sanitized = sanitizeHtml(value, {
       allowedTags: [],

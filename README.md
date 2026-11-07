@@ -4,7 +4,7 @@ This workspace contains a Vite/React TypeScript enquiry wizard and a separate Ty
 
 ## Deploy the frontend and API together on Vercel
 
-The repository is configured as one Vercel project: Vite produces the static site in `dist`, and `api/[...path].ts` exposes the Express API as a Vercel Function. The API routes keep their `/api/...` paths, and the SPA rewrite serves `index.html` for client-side navigation. Vercel's runtime keeps notification work alive after the response with `waitUntil`; it is still best-effort, not a durable queue.
+The repository is configured as one Vercel project: Vite produces the static site in `dist`, and explicit files under `api/` expose the public API routes as Vercel Functions. The SPA rewrite serves `index.html` for client-side navigation. Vercel's runtime keeps notification work alive after the response with `waitUntil`; it is still best-effort, not a durable queue.
 
 1. Import the repository into Vercel as a Vite project. Keep the Root Directory at the repository root.
 2. Set the build command to `npm run prisma:generate && npm run build` and output directory to `dist` (these values are also in `vercel.json`).
