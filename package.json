@@ -12,7 +12,8 @@
     "build:server": "tsc -p tsconfig.server.json",
     "start:server": "node dist-server/server/server.js",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate deploy"
+    "prisma:migrate": "prisma migrate deploy",
+    "seed:academy": "tsx prisma/seed-academy.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",

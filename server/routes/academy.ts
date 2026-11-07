@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { prisma } from '../lib/prisma.js'
+import { getPublishedAcademyCourses } from '../lib/academy-courses.js'
 import { submissionRateLimit } from '../middleware/submission-rate-limit.js'
 import { SECURITY_NOTICE, validateBody } from '../middleware/validation.js'
 import { academyCourseRegistrationSchema } from '../schemas/submissions.js'
@@ -8,18 +9,7 @@ import { notifySubmissionInBackground } from '../lib/notifications.js'
 const router = Router()
 
 router.get('/courses', async (_req, res) => {
-  const courses = await prisma.academyCourse.findMany({
-    where: { isPublished: true },
-    select: {
-      id: true,
-      title: true,
-      summary: true,
-      requirements: true,
-      learningOutcomes: true,
-    },
-    orderBy: { title: 'asc' },
-  })
-
+  const courses = await getPublishedAcademyCourses()
   res.status(200).json({ courses })
 })
 
