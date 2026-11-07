@@ -42,6 +42,89 @@ const featuredCoursePreviews: { title: string; category: Exclude<CourseFilter, '
   { title: 'Negotiation & Conflict Management', category: 'business' },
 ]
 
+const participantGroups = [
+  {
+    title: 'Human Resource Professionals',
+    roles:
+      'HR managers, HR officers and assistants, employee-relations officers, recruitment officers, and workplace-relations practitioners.',
+  },
+  {
+    title: 'Law and Legal Professionals',
+    roles:
+      'Law students, advocates, lawyers, legal officers, paralegals, legal assistants, and law graduates.',
+  },
+  {
+    title: 'Recent High School Graduates',
+    roles:
+      'Young people who have completed secondary education and want to develop professional skills or explore mediation and ADR.',
+  },
+  {
+    title: 'Business and Entrepreneurship',
+    roles:
+      'Entrepreneurs, business owners, managers, directors, business consultants, and corporate administrators.',
+  },
+  {
+    title: 'Real Estate and Property',
+    roles:
+      'Estate agents, property managers, landlords, property developers, valuers, facility managers, and real-estate consultants.',
+  },
+  {
+    title: 'Education Professionals',
+    roles:
+      'Teachers, lecturers, school administrators, guidance and counselling personnel, education officers, and academic managers.',
+  },
+  {
+    title: 'Healthcare Professionals',
+    roles:
+      'Doctors, nurses, clinical officers, hospital administrators, counsellors, and healthcare managers.',
+  },
+  {
+    title: 'Finance and Accounting',
+    roles:
+      'Accountants, auditors, bankers, financial officers, insurance professionals, credit officers, and debt-recovery officers.',
+  },
+  {
+    title: 'Public Administration and Government',
+    roles:
+      'Public administrators, civil servants, county government officers, public officers, and institutional managers.',
+  },
+  {
+    title: 'Social and Community Development',
+    roles:
+      'Social workers, community-development officers, project officers, community mobilisers, and development practitioners.',
+  },
+  {
+    title: 'NGO and Human Rights Practitioners',
+    roles:
+      'Programme officers, project coordinators, human-rights and advocacy officers, community paralegals, and civil-society personnel.',
+  },
+  {
+    title: 'Counselling and Psychology',
+    roles:
+      'Counsellors, psychologists, therapists, social-support practitioners, and guidance personnel.',
+  },
+  {
+    title: 'Procurement and Supply Chain',
+    roles:
+      'Procurement officers, supply-chain managers, logistics officers, contract administrators, and purchasing professionals.',
+  },
+  {
+    title: 'Security and Workplace Safety',
+    roles:
+      'Security managers, compliance officers, occupational-safety officers, and workplace-risk managers.',
+  },
+  {
+    title: 'Religious and Community Leaders',
+    roles:
+      'Clergy, faith-based organisation leaders, elders, community representatives, and others who help resolve interpersonal or community disputes.',
+  },
+  {
+    title: 'Aspiring and Practising Mediators',
+    roles:
+      'People seeking foundational mediation knowledge, practical training, professional development, or ways to strengthen existing mediation skills.',
+  },
+]
+
 interface RegistrationForm {
   studentName: string
   email: string
@@ -229,9 +312,21 @@ export default function Academy() {
               and communities.
             </p>
             <p>
-              Our vision is a culture where people can address disagreement
-              constructively. Our mission is to make the knowledge and practice
-              of resolution accessible through focused, applied learning.
+              <strong>Our vision</strong> is to be a trusted centre of
+              excellence in mediation, alternative dispute resolution and
+              professional training, contributing to a society where disputes
+              are resolved constructively, relationships are preserved and
+              access to justice is strengthened.
+            </p>
+            <p>
+              <strong>Our mission</strong> is to provide impartial,
+              confidential, accessible and professionally guided mediation
+              services while equipping individuals, professionals and
+              institutions with practical skills in mediation, negotiation and
+              conflict management. Through ethical practice, continuous
+              learning and innovative dispute-resolution approaches, we seek to
+              promote lasting solutions and strengthen the culture of
+              alternative dispute resolution.
             </p>
             <p>
               Learners build skills in impartial facilitation, active listening,
@@ -245,6 +340,63 @@ export default function Academy() {
           <span><b aria-hidden="true">01</b> Listen and communicate effectively</span>
           <span><b aria-hidden="true">02</b> Navigate difficult conversations</span>
           <span><b aria-hidden="true">03</b> Support practical resolution</span>
+        </div>
+      </section>
+
+      <section
+        className="academy-audience"
+        aria-labelledby="academy-audience-title"
+      >
+        <div className="home-container">
+          <div className="academy-audience-heading">
+            <div>
+              <p className="academy-section-kicker">A skill for every profession</p>
+              <h2 id="academy-audience-title">
+                Who can benefit from Kestone Academy &amp; Training?
+              </h2>
+            </div>
+            <p>
+              Our programmes welcome people from diverse academic, professional,
+              and career backgrounds who want practical skills in mediation,
+              negotiation, conflict management, and alternative dispute
+              resolution (ADR).
+            </p>
+          </div>
+
+          <div className="academy-audience-grid">
+            {participantGroups.map((group, index) => (
+              <details className="academy-audience-card" key={group.title}>
+                <summary>
+                  <span className="academy-audience-number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{group.title}</span>
+                  <span className="academy-audience-toggle" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p>{group.roles}</p>
+              </details>
+            ))}
+          </div>
+
+          <aside className="academy-audience-callout">
+            <span className="academy-audience-callout-mark" aria-hidden="true">
+              &#10003;
+            </span>
+            <div>
+              <h3>You do not need to be a lawyer to benefit.</h3>
+              <p>
+                Conflict arises in every sector. Our programmes seek to equip
+                participants with practical, ethical, and professional skills
+                they can apply in their workplaces, businesses, institutions,
+                and communities.
+              </p>
+            </div>
+            <a className="home-button home-button-gold" href="#academy-courses">
+              Explore courses <span aria-hidden="true">&rarr;</span>
+            </a>
+          </aside>
         </div>
       </section>
 

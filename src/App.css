@@ -754,6 +754,163 @@
   letter-spacing: 0.08em;
 }
 
+.academy-audience {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgb(212 175 55 / 8%), transparent 32%),
+    #fff;
+  padding-block: clamp(55px, 8vw, 88px);
+}
+
+.academy-audience-heading {
+  align-items: end;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.75fr);
+  margin-bottom: 30px;
+}
+
+.academy-audience-heading h2 {
+  color: #0a2540;
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 700px;
+}
+
+.academy-audience-heading > p {
+  color: #657185;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0 0 4px;
+}
+
+.academy-audience-grid {
+  display: grid;
+  gap: 10px 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.academy-audience-card {
+  align-self: start;
+  background: #fff;
+  border: 1px solid #e1e6ed;
+  border-radius: 10px;
+  box-shadow: 0 5px 16px rgb(7 26 46 / 4%);
+  overflow: hidden;
+}
+
+.academy-audience-card[open] {
+  border-color: #d7c27b;
+  box-shadow: 0 9px 22px rgb(7 26 46 / 7%);
+}
+
+.academy-audience-card summary {
+  align-items: center;
+  color: #0a2540;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.86rem;
+  font-weight: 750;
+  gap: 12px;
+  list-style: none;
+  min-height: 62px;
+  padding: 12px 16px;
+}
+
+.academy-audience-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.academy-audience-card summary:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: -3px;
+}
+
+.academy-audience-number {
+  align-items: center;
+  background: #f8f2df;
+  border-radius: 7px;
+  color: #80621b;
+  display: inline-flex;
+  flex: 0 0 36px;
+  font-size: 0.68rem;
+  height: 34px;
+  justify-content: center;
+  letter-spacing: 0.04em;
+}
+
+.academy-audience-toggle {
+  align-items: center;
+  border: 1px solid #dfe4eb;
+  border-radius: 50%;
+  color: #80621b;
+  display: inline-flex;
+  flex: 0 0 26px;
+  font-size: 1.1rem;
+  height: 26px;
+  justify-content: center;
+  margin-left: auto;
+  transition: transform 160ms ease;
+}
+
+.academy-audience-card[open] .academy-audience-toggle {
+  transform: rotate(45deg);
+}
+
+.academy-audience-card > p {
+  border-top: 1px solid #edf0f3;
+  color: #5e6a7b;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin: 0;
+  padding: 14px 18px 17px 64px;
+}
+
+.academy-audience-callout {
+  align-items: center;
+  background: #0a2540;
+  border: 1px solid rgb(212 175 55 / 30%);
+  border-radius: 14px;
+  color: #fff;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  margin-top: 30px;
+  padding: clamp(20px, 3vw, 30px);
+}
+
+.academy-audience-callout-mark {
+  align-items: center;
+  background: rgb(212 175 55 / 15%);
+  border: 1px solid rgb(212 175 55 / 45%);
+  border-radius: 50%;
+  color: #e4ca70;
+  display: inline-flex;
+  flex: 0 0 44px;
+  font-size: 1.1rem;
+  height: 44px;
+  justify-content: center;
+  width: 44px;
+}
+
+.academy-audience-callout h3 {
+  color: #fff;
+  font-family: var(--font-family-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 7px;
+}
+
+.academy-audience-callout p {
+  color: rgb(255 255 255 / 75%);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 760px;
+}
+
 .academy-catalog {
   background: #eef1f5;
   padding-block: clamp(55px, 8vw, 88px);
@@ -3782,6 +3939,10 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .academy-audience-heading {
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 0.8fr);
+  }
+
   .academy-course-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3811,6 +3972,22 @@
     grid-template-columns: 1fr;
   }
 
+  .academy-audience-heading {
+    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .academy-audience-callout {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .academy-audience-callout .home-button {
+    grid-column: 2;
+    justify-self: start;
+  }
+
   .academy-outcome-list {
     grid-template-columns: 1fr;
   }
@@ -3823,6 +4000,28 @@
 }
 
 @media (max-width: 560px) {
+  .academy-audience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .academy-audience-card > p {
+    padding-left: 16px;
+  }
+
+  .academy-audience-callout {
+    gap: 14px;
+  }
+
+  .academy-audience-callout-mark {
+    flex-basis: 38px;
+    height: 38px;
+    width: 38px;
+  }
+
+  .academy-audience-callout .home-button {
+    grid-column: 1 / -1;
+  }
+
   .academy-course-grid {
     grid-template-columns: 1fr;
   }
